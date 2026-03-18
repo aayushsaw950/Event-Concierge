@@ -5,7 +5,7 @@ export const getPexelImage = async (query) => {
    try{
       const res = await axios.get("https://api.pexels.com/v1/search", {
       headers: {
-        Authorization: process.env.Pexels_Api_Key,
+        Authorization: process.env.PEXELS_API_KEY,
       },
       params: {
         query,
