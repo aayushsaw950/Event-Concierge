@@ -1,6 +1,7 @@
 {
   "name": "event_concierge",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,6 +10,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/xai": "^3.0.67",
+    "axios": "^1.13.6",
+    "framer-motion": "^12.38.0",
+    "groq-sdk": "^1.1.1",
+    "lucide-react": "^0.577.0",
+    "mongoose": "^9.3.1",
     "next": "16.1.7",
     "react": "19.2.3",
     "react-dom": "19.2.3"
