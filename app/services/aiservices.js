@@ -2,10 +2,11 @@ import client from "../lib/openai.js";
 import axios from "axios";
 
 export const getPexelImage = async (query) => {
+  
    try{
       const res = await axios.get("https://api.pexels.com/v1/search", {
       headers: {
-        Authorization: process.env.PEXELS_API_KEY,
+        Authorization: `Bearer ${process.env.PEXELS_API_KEY}`,
       },
       params: {
         query,
