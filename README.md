@@ -1,36 +1,163 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+AI Event Concierge
 
-## Getting Started
+AI Event Concierge is a full-stack web application that helps users generate personalized event plans using AI. It suggests venues, locations, estimated costs, and reasons why the recommendation fits the user's needs.
 
-First, run the development server:
+Built with modern technologies like Next.js, MongoDB, and NextAuth, the app provides a seamless experience with authentication and user-specific event history.
+
+---
+
+##  Features
+
+*  Google Authentication (NextAuth)
+*  AI-powered event recommendations
+*  Dynamic venue images (Pexels API)
+*  User-specific event history
+*  MongoDB database integration
+*  Fast and responsive UI with animations
+*  Toast notifications for better UX
+
+---
+
+## Tech Stack
+
+* **Frontend:** Next.js (App Router), React, Tailwind CSS
+* **Backend:** Next.js API Routes
+* **Database:** MongoDB + Mongoose
+* **Authentication:** NextAuth (Google Provider)
+* **APIs:** Pexels API, AI generation service
+* **Animations:** Framer Motion
+
+---
+
+##  Installation & Local Setup
+
+### 1. Clone the repository
+
+
+git clone https://github.com/your-username/Event-Concierge.git
+cd Event-Concierge
+
+
+---
+
+### 2. Install dependencies
+
+
+npm install
+
+
+---
+
+### 3. Setup environment variables
+
+Create a `.env.local` file in the root directory and add:
+
+```env
+# MongoDB
+MONGODB_URI=your_mongodb_connection_string
+
+# NextAuth
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_secret_key
+
+# Google Auth
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# APIs
+PEXELS_API_KEY=your_pexels_api_key
+GROQ_API_KEY=your_ai_api_key
+```
+
+---
+
+### 4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 5. Open in browser
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+http://localhost:3000
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔑 Important Setup Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Google Authentication
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Create OAuth credentials in Google Cloud Console
+* Add this redirect URI:
 
-## Deploy on Vercel
+```
+http://localhost:3000/api/auth/callback/google
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### MongoDB
+
+* Use MongoDB Atlas
+* Whitelist IP: `0.0.0.0/0` (for development)
+
+---
+
+### Pexels API
+
+* Get API key from Pexels
+* Used for fetching event venue images
+
+---
+
+## Project Structure
+
+```
+/app
+  /api
+    /auth
+    /events
+    /generate
+/components
+/models
+/lib
+/services
+```
+
+---
+
+##  Authentication Flow
+
+* Users sign in via Google
+* User is stored in MongoDB
+* Events are linked using `userId`
+* Only authenticated users can:
+
+  * Generate events
+  * View history
+
+---
+
+##  Future Improvements
+
+*  Edit/Delete events
+*  Dashboard analytics
+*  Payment integration (SaaS model)
+*  Search & filters
+*  Mobile-first UI improvements
+
+---
+
+##  Author
+
+**Aayush Kumar Saw**
+
+---
+
+## ⭐ Show your support
+
+If you like this project, give it a ⭐ on GitHub!

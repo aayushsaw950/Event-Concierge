@@ -3,13 +3,17 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MapPin, ChevronRight, Loader2 } from "lucide-react";
+import { useSession , signIn } from "next-auth/react";
 import Image from "next/image";
 
 const Events = () => {
+  const { data: session } = useSession();
   const [pastEvents, setPastEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!session) return;
+
     const fetchEvents = async () => {
       try {
         const res = await axios.get("/api/events");
@@ -22,8 +26,31 @@ const Events = () => {
     };
 
     fetchEvents();
-  }, []);
+  }, [session]);
+  
 
+if (!session) {
+    return (
+      <div className="mt-10 text-center">
+        <p className="text-slate-600 mb-3">
+          Please login to view your history
+        </p>
+        <button
+          onClick={() => signIn("google")}
+          className="px-4 py-2 bg-primary text-white rounded-lg"
+        >
+          Login with Google
+        </button>
+      </div>
+    );
+  }
+  if (!loading && pastEvents.length === 0) {
+  return (
+    <p className="mt-6 text-center text-slate-500">
+      No events yet
+    </p>
+  );
+}
  
   if (loading) {
     return (
